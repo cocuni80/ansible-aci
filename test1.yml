@@ -12,6 +12,7 @@
   tasks:
     - name: ENSURE APPLICATIONS TENANT EXISTS
       aci_tenant:
+        host: "{{ inventory_hostname }}"
         username: "{{ username }}"
         password: "{{ password }}"
         state: "present"
