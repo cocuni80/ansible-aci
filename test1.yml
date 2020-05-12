@@ -1,7 +1,6 @@
 ---
 ---
 - name: ENSURE APPLICATION CONFIGURATION EXISTS
-  hosts: 192.168.2.11
   connection: local
   gather_facts: False
 
