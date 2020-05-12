@@ -1,5 +1,4 @@
 ---
----
 - name: ENSURE APPLICATION CONFIGURATION EXISTS
   connection: local
   gather_facts: False
