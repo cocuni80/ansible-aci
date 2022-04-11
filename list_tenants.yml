@@ -1,8 +1,6 @@
 ---
-- name: CREATE TENANT
+- name: LIST TENANTS
   hosts: "{{ host }}"
-  connection: local
-  gather_facts: False
 
   tasks:
 
