@@ -1,0 +1,21 @@
+---
+- name: CREATE TENANT
+  hosts: "{{ host }}"
+  connection: local
+  gather_facts: False
+
+  tasks:
+
+    - name: Create Tenant
+      aci_tenant:
+        host: "{{ host }}"
+        user: "{{ username }}"
+        password: "{{ apic_pass }}"
+        validate_certs: False
+      
+      delegate_to: localhost
+      register: apic_tenants
+
+    - name: Print Tenants
+      debug:
+        msg: "{{ apic_tenants | json_query('current[].fvTenant.attributes.name') }}"
