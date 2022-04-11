@@ -1,6 +1,8 @@
 ---
 - name: CREATE TENANT
   hosts: "{{ host }}"
+  connection: local
+  gather_facts: False
 
   tasks:
 
@@ -9,7 +11,7 @@
         host: "{{ host }}"
         user: "{{ username }}"
         password: "{{ apic_pass }}"
-        validate_certs: "{{ validate_certs }}"
+        validate_certs: False
 
         tenant: "Support"
         description: "The Support Organization"
