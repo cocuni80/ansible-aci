@@ -1,8 +1,13 @@
 ---
-- name: CREATE TENANT
+- name: CREATE TENANTS
   hosts: "{{ host }}"
   connection: local
   gather_facts: False
+
+  vars:
+    tenant_list:
+      - Customer1
+      - Customer2
 
   tasks:
 
@@ -13,8 +18,9 @@
         password: "{{ apic_pass }}"
         validate_certs: False
 
-        tenant: "Support"
-        description: "The Support Organization"
+        tenant: "{{ item }}"
         state: present
+        description: "Tenant"
 
       delegate_to: localhost
+      loop: "{{ tenant_list }}"
