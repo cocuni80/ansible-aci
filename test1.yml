@@ -1,6 +1,6 @@
 ---
 - name: ENSURE APPLICATION CONFIGURATION EXISTS
-  hosts: aci
+  hosts: "{{ inventory_hostname }}"
   connection: local
   gather_facts: False
 
