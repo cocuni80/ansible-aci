@@ -1,6 +1,7 @@
 ---
 - name: LIST TENANTS
   hosts: "{{ host }}"
+  gather_facts: False
 
   tasks:
 
@@ -10,6 +11,7 @@
         user: "{{ username }}"
         password: "{{ apic_pass }}"
         validate_certs: False
+        state: query
       
       delegate_to: localhost
       register: apic_tenants
