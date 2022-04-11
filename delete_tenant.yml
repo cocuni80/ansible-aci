@@ -1,21 +1,18 @@
 ---
-- name: LIST TENANTS
+- name: DELETE TENANTS
   hosts: "{{ host }}"
   gather_facts: False
 
   tasks:
 
-    - name: Query Tenants
+    - name: Delete Tenant
       aci_tenant:
         host: "{{ host }}"
         user: "{{ username }}"
         password: "{{ apic_pass }}"
         validate_certs: False
-        state: query
+
+        tenant: "{{ tenant_name }}"
+        state: absent
       
       delegate_to: localhost
-      register: apic_tenants
-
-    - name: Print Tenants
-      debug:
-        msg: "{{ apic_tenants | json_query('current[].fvTenant.attributes.name') }}"
