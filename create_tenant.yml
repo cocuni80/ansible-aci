@@ -1,6 +1,6 @@
 ---
 - name: CREATE TENANT
-  hosts: apic
+  hosts: "{{ host }}"
 
   tasks:
 
@@ -8,11 +8,11 @@
       aci_tenant:
         host: "{{ host }}"
         user: "{{ username }}"
-        password: "{{ password }}"
+        password: "{{ apic_pass }}"
         validate_certs: "{{ validate_certs }}"
 
         tenant: "Support"
         description: "The Support Organization"
         state: present
-        
+
       delegate_to: localhost
