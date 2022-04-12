@@ -20,7 +20,7 @@
         tenant: "{{ tenant_name }}"
         vrf: "{{ vrf_name }}"
         bd: "{{ bd_name }}"
-        descr: Vlan 10 BD
+        description: Vlan 10 BD
         state: present
       
       delegate_to: localhost
