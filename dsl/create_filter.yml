@@ -36,12 +36,12 @@
         validate_certs: False
 
         tenant: "{{ tenant_name }}"
-        filter: "{{ filter_web.name }}"
-        entry: "{{ filter_web.entry }}"
-        ether_type: "{{ filter_web.ether_type }}"
-        ip_protocol: "{{ filter_web.ip_protocol }}"
-        dst_port_start: "{{ filter_web.dst_port_start }}"
-        dst_port_end: "{{ filter_web.dst_port_end }}"
+        filter: {{ filter_web.name }}
+        entry: {{ filter_web.entry }}
+        ether_type: {{ filter_web.ether_type }}
+        ip_protocol: {{ filter_web.ip_protocol }}
+        dst_port_start: {{ filter_web.dst_port_start }}
+        dst_port_end: {{ filter_web.dst_port_end }}
         description: Web Services EPG
         state: present
       delegate_to: localhost
