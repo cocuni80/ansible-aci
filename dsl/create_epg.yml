@@ -1,0 +1,27 @@
+---
+- name: CREATE EPG
+  hosts: "{{ apic }}"
+  gather_facts: False
+
+  vars:
+    tenant_name: Bank_Test
+    ap_name: Services
+    bd_name: BD_VLAN_10
+    epg_name: Web_EPG
+
+  tasks:
+
+    - name: Create EPG
+      aci_epg:
+        host: "{{ apic }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+
+        tenant: "{{ tenant_name }}"
+        ap: "{{ ap_name }}"
+        bd: "{{ bd_name }}"
+        epg: "{{ epg_name }}"
+        description: Web Services EPG
+        state: present
+      delegate_to: localhost
