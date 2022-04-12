@@ -1,0 +1,26 @@
+---
+- name: CREATE BD
+  hosts: "{{ apic }}"
+  gather_facts: False
+
+  vars:
+    tenant_name: Bank_Test
+    vrf_name: Development
+    bd_name: BD_VLAN_10
+
+  tasks:
+
+    - name: Create BD
+      aci_bd:
+        host: "{{ apic }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+
+        tenant: "{{ tenant_name }}"
+        vrf: "{{ vrf_name }}"
+        bd: "{{ bd_name }}"
+        descr: Vlan 10 BD
+        state: present
+      
+      delegate_to: localhost
