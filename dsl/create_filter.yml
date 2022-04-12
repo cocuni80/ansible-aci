@@ -1,0 +1,47 @@
+---
+- name: CREATE FILTER AND ENTRIES
+  hosts: "{{ apic }}"
+  gather_facts: False
+
+  vars:
+    tenant_name: Bank_Test
+    filter_web: 
+      name: "Web_Filter"
+      entry: "http"
+      ether_type: "ip"
+      ip_protocol: "tcp"
+      dst_port_start: "80"
+      dst_port_end: "80"
+
+  tasks:
+
+    - name: Create Filter
+      aci_filter:
+        host: "{{ apic }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+
+        tenant: "{{ tenant_name }}"
+        filter: "{{ filter_web.name }}"
+        description: Web Services EPG
+        state: present
+      delegate_to: localhost
+
+    - name: Create Filter Entry
+      aci_filter_entry:
+        host: "{{ apic }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+
+        tenant: "{{ tenant_name }}"
+        filter: "{{ filter_web.name }}"
+        entry: "{{ filter_web.entry }}"
+        ether_type: "{{ filter_web.ether_type }}"
+        ip_protocol: "{{ filter_web.ip_protocol }}"
+        dst_port_start: "{{ filter_web.dst_port_start }}"
+        dst_port_end: "{{ filter_web.dst_port_end }}"
+        description: Web Services EPG
+        state: present
+      delegate_to: localhost
