@@ -21,8 +21,4 @@
     
     - name: PRINT Template health_report_v1
       debug:
-        msg: "{{ lookup('template', './health_report_v1.j2') }}"
-
-    - name: PRINT System Health response
-      debug:
-        var: "{{ username }}"
+        msg: "{{ lookup('template', 'health_report_v1.j2') }}"
