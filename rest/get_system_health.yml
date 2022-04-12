@@ -1,5 +1,5 @@
 ---
-- name: QUERY FABRIC AND BUILD REPORT
+- name: QUERY FABRIC AND BUILD HEALTH REPORT
   hosts: "{{ apic }}"
   connection: local
   gather_facts: False
@@ -12,11 +12,14 @@
         user: "{{ username }}"
         password: "{{ password }}"
         validate_certs: False
-
         path: /api/mo/topology/health.json
         method: get
-      register: health_system
+      register: reponse
     
     - name: PRINT Template health_report_v1
       debug:
         msg: "{{ lookup('template', 'health_report_v1.j2') }}"
+
+    - name: PRINT System Health response
+      debug:
+        var: reponse
