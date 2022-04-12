@@ -1,17 +1,18 @@
 ---
-- name: CREATE FILTER AND ENTRIES
+- name: CREATE CONTRACT AND SUBJECTS
   hosts: "{{ apic }}"
   gather_facts: False
 
   vars:
     tenant_name: Bank_Test
+    filter_name: "Web_Filter"
     filter_web: 
-      name: Web_Filter
-      entry: http
-      ether_type: ip
-      ip_protocol: tcp
-      dst_port_start: 80
-      dst_port_end: 80
+      name: "Web_Filter"
+      entry: "http"
+      ether_type: "ip"
+      ip_protocol: "tcp"
+      dst_port_start: "80"
+      dst_port_end: "80"
 
   tasks:
 
