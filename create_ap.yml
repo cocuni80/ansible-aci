@@ -10,7 +10,7 @@
   tasks:
 
     - name: Create AP
-      aci_vrf:
+      aci_ap:
         host: "{{ apic }}"
         user: "{{ username }}"
         password: "{{ password }}"
