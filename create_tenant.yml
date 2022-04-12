@@ -6,8 +6,8 @@
 
   vars:
     tenant_list:
-      - Customer1
-      - Customer2
+      - Bank_Test
+      - Bank_Prod
 
   tasks:
 
