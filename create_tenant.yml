@@ -21,6 +21,5 @@
         tenant: "{{ item }}"
         state: present
         description: "Tenant"
-
       delegate_to: localhost
       loop: "{{ tenant_list }}"

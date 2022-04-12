@@ -20,5 +20,4 @@
         vrf: "{{ vrf_name }}"
         descr: Development VRF
         state: present
-      
       delegate_to: localhost

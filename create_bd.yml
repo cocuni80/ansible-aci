@@ -7,6 +7,7 @@
     tenant_name: Bank_Test
     vrf_name: Development
     bd_name: BD_VLAN_10
+    subnet: 192.168.10.1/24
 
   tasks:
 
@@ -21,6 +22,20 @@
         vrf: "{{ vrf_name }}"
         bd: "{{ bd_name }}"
         description: Vlan 10 BD
-        state: present
-      
+        state: present      
+      delegate_to: localhost
+
+    - name: Asign Subnet
+      aci_bd_subnet:
+        host: "{{ apic }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+
+        tenant: "{{ tenant_name }}"
+        bd: "{{ bd_name }}"
+        gateway: "{{ subnet.split('/') | first }}"
+        mask: "{{ subnet.split('/') | last }}"
+        description: Vlan 10 Subnet
+        state: present      
       delegate_to: localhost
