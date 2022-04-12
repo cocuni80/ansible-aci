@@ -1,13 +1,13 @@
 ---
 - name: CREATE TENANTS - REST
-  hosts: "{{ host }}"
+  hosts: "{{ apic }}"
   connection: local
   gather_facts: False
 
   vars:
     tenant_list:
-      - Customer1
-      - Customer2
+      - Bank_Test
+      - Bank_Prod
 
   tasks:
 
@@ -21,9 +21,9 @@
 
     - name: Create Tenant REST
       aci_rest:
-        host: "{{ host }}"
+        host: "{{ apic }}"
         user: "{{ username }}"
-        password: "{{ apic_pass }}"
+        password: "{{ password }}"
         validate_certs: False
 
         path: /api/mo/uni.json

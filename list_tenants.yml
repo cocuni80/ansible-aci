@@ -1,15 +1,15 @@
 ---
 - name: LIST TENANTS
-  hosts: "{{ host }}"
+  hosts: "{{ apic }}"
   gather_facts: False
 
   tasks:
 
     - name: Query Tenants
       aci_tenant:
-        host: "{{ host }}"
+        host: "{{ apic }}"
         user: "{{ username }}"
-        password: "{{ apic_pass }}"
+        password: "{{ password }}"
         validate_certs: False
         state: query
       

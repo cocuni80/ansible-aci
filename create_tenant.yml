@@ -1,6 +1,6 @@
 ---
 - name: CREATE TENANTS
-  hosts: "{{ host }}"
+  hosts: "{{ apic }}"
   connection: local
   gather_facts: False
 
@@ -13,9 +13,9 @@
 
     - name: Create Tenant
       aci_tenant:
-        host: "{{ host }}"
+        host: "{{ apic }}"
         user: "{{ username }}"
-        password: "{{ apic_pass }}"
+        password: "{{ password }}"
         validate_certs: False
 
         tenant: "{{ item }}"

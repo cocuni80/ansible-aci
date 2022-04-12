@@ -1,15 +1,18 @@
 ---
 - name: DELETE TENANTS
-  hosts: "{{ host }}"
+  hosts: "{{ apic }}"
   gather_facts: False
+
+  vars:
+    tenant_name: Bank_Test
 
   tasks:
 
     - name: Delete Tenant
       aci_tenant:
-        host: "{{ host }}"
+        host: "{{ apic }}"
         user: "{{ username }}"
-        password: "{{ apic_pass }}"
+        password: "{{ password }}"
         validate_certs: False
 
         tenant: "{{ tenant_name }}"

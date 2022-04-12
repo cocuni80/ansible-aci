@@ -1,6 +1,6 @@
 ---
 - name: CREATE VRF
-  hosts: "{{ host }}"
+  hosts: "{{ apic }}"
   gather_facts: False
 
   vars:
@@ -11,9 +11,9 @@
 
     - name: Create VRF
       aci_vrf:
-        host: "{{ host }}"
+        host: "{{ apic }}"
         user: "{{ username }}"
-        password: "{{ apic_pass }}"
+        password: "{{ password }}"
         validate_certs: False
 
         tenant: "{{ tenant_name }}"
