@@ -15,8 +15,6 @@
 
         path: /api/mo/topology/health.json
         method: get
-
-      delegate_to: localhost
       register: health_system
     
     - name: PRINT Template health_report_v1
