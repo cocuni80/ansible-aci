@@ -25,3 +25,20 @@
         description: Web Services EPG
         state: present
       delegate_to: localhost
+
+    - name: Asign Domain
+      aci_epg_to_domain:
+        host: "{{ apic }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+
+        tenant: "{{ tenant_name }}"
+        ap: "{{ ap_name }}"
+        epg: "{{ epg_name }}"
+        domain: vCenter_VMM
+        domain_type: vmm
+        vm_provider: vmware
+        description: Web Services EPG
+        state: present
+      delegate_to: localhost
