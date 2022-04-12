@@ -6,8 +6,15 @@
   vars:
     tenant_name: Bank_Test
     ap_name: Services
-    bd_name: BD_VLAN_10
     epg_name: Web_EPG
+    bd_name: BD_VLAN_10
+    domain:
+      name: vCenter_VMM
+      domain_type: vmm
+      vm_provider: vmware
+    contract:
+      name: Web_Contract
+      contract_type: provider
 
   tasks:
 
@@ -26,7 +33,7 @@
         state: present
       delegate_to: localhost
 
-    - name: Asign Domain
+    - name: Add Domain
       aci_epg_to_domain:
         host: "{{ apic }}"
         user: "{{ username }}"
@@ -36,8 +43,23 @@
         tenant: "{{ tenant_name }}"
         ap: "{{ ap_name }}"
         epg: "{{ epg_name }}"
-        domain: vCenter_VMM
-        domain_type: vmm
-        vm_provider: vmware
+        domain: "{{ domain.name }}"
+        domain_type: "{{ domain.domain_type }}"
+        vm_provider: "{{ domain.vm_provider }}"
+        state: present
+      delegate_to: localhost
+
+    - name: Add Contract
+      aci_epg_to_domain:
+        host: "{{ apic }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+
+        tenant: "{{ tenant_name }}"
+        ap: "{{ ap_name }}"
+        epg: "{{ epg_name }}"
+        contract: "{{ contract.name }}"
+        contract_type: "{{ contract.contract_type }}"
         state: present
       delegate_to: localhost
