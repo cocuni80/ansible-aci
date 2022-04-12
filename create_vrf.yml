@@ -1,0 +1,24 @@
+---
+- name: CREATE VRF
+  hosts: "{{ host }}"
+  gather_facts: False
+
+  vars:
+    tenant_name: Bank_Test
+    vrf_name: Development
+
+  tasks:
+
+    - name: Create VRF
+      aci_vrf:
+        host: "{{ host }}"
+        user: "{{ username }}"
+        password: "{{ apic_pass }}"
+        validate_certs: False
+
+        tenant: "{{ tenant_name }}"
+        vrf: "{{ vrf_name }}"
+        descr: Development VRF
+        state: present
+      
+      delegate_to: localhost
