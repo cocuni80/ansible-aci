@@ -11,7 +11,7 @@
 
   tasks:
 
-    - name: BUILD Tenant fact
+    - name: BUILD Tenant List
       set_fact:
         apic_tenant_list: "{{ tenant_list }}"
 
@@ -35,4 +35,4 @@
               descr: "{{ item }} - Tenant managed by Ansible AWX"
 
       delegate_to: localhost
-      loop: apic_tenant_list
+      loop: "{{ tenant_list }}"
