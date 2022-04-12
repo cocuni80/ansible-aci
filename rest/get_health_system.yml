@@ -1,12 +1,12 @@
 ---
-- name: CREATE TENANTS - REST
+- name: QUERY FABRIC AND BUILD REPORT
   hosts: "{{ apic }}"
   connection: local
   gather_facts: False
 
   tasks:
 
-    - name: Create Tenant REST
+    - name: Get System Health
       aci_rest:
         host: "{{ apic }}"
         user: "{{ username }}"
@@ -15,11 +15,10 @@
 
         path: /api/mo/topology/health.json
         method: get
-        
+
       delegate_to: localhost
       register: health_system
 
     - name: PRINT System Health response
       debug:
         var: health_system
-        verbosity: 1
