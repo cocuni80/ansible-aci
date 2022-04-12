@@ -5,44 +5,50 @@
 
   vars:
     tenant_name: Bank_Test
-    filter_name: "Web_Filter"
-    filter_web: 
-      name: "Web_Filter"
-      entry: "http"
-      ether_type: "ip"
-      ip_protocol: "tcp"
-      dst_port_start: "80"
-      dst_port_end: "80"
+    contract_web:
+      name: Web_Contract
+      subject: Web_Subject
+      filter: Web_Filter
 
   tasks:
 
-    - name: Create Filter
-      aci_filter:
+    - name: Create Contract
+      aci_contract:
         host: "{{ apic }}"
         user: "{{ username }}"
         password: "{{ password }}"
         validate_certs: False
 
         tenant: "{{ tenant_name }}"
-        filter: "{{ filter_web.name }}"
-        description: Web Services EPG
+        contract: "{{ contract_web.name }}"
+        description: Contract Services HTTP
         state: present
       delegate_to: localhost
 
-    - name: Create Filter Entry
-      aci_filter_entry:
+    - name: Create Subject
+      aci_contract_subject:
         host: "{{ apic }}"
         user: "{{ username }}"
         password: "{{ password }}"
         validate_certs: False
 
         tenant: "{{ tenant_name }}"
-        filter: "{{ filter_web.name }}"
-        entry: "{{ filter_web.entry }}"
-        ether_type: "{{ filter_web.ether_type }}"
-        ip_protocol: "{{ filter_web.ip_protocol }}"
-        dst_port_start: "{{ filter_web.dst_port_start }}"
-        dst_port_end: "{{ filter_web.dst_port_end }}"
-        description: Web Services EPG
+        contract: "{{ contract_web.name }}"
+        subject: "{{ contract_web.subject }}"
+        description: Subject HTTP
+        state: present
+      delegate_to: localhost
+
+    - name: Add Filter to Subject
+      aci_contract_subject_to_filter:
+        host: "{{ apic }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+
+        tenant: "{{ tenant_name }}"
+        contract: "{{ contract_web.name }}"
+        subject: "{{ contract_web.subject }}"
+        filter: "{{ contract_web.filter }}"
         state: present
       delegate_to: localhost
