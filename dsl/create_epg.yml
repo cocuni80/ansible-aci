@@ -39,6 +39,5 @@
         domain: vCenter_VMM
         domain_type: vmm
         vm_provider: vmware
-        description: Web Services EPG
         state: present
       delegate_to: localhost
