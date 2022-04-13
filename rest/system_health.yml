@@ -16,9 +16,9 @@
         method: get
       register: reponse
     
-    - name: PRINT Template health_report_v1
+    - name: PRINT Template
       debug:
-        msg: "{{ lookup('template', 'health_report_v1.j2') }}"
+        msg: "{{ lookup('template', 'system_health.j2') }}"
 
     - name: PRINT System Health response
       debug:

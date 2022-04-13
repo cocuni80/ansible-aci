@@ -1,0 +1,9 @@
+{% if reponse %}
+{% for item in reponse.imdata %}
+Code: {{ item.faultInst.attributes.code }}
+Descr: {{ item.faultInst.attributes.descr }}
+Created: {{ item.faultInst.attributes.created }}
+Severity: {{ item.faultInst.attributes.severity }}
+--------------
+{% endfor %}
+{% endif %}

@@ -1,0 +1,25 @@
+---
+- name: QUERY FABRIC AND BUILD FAULTS REPORT
+  hosts: "{{ apic }}"
+  connection: local
+  gather_facts: False
+
+  tasks:
+
+    - name: Get System Faults
+      aci_rest:
+        host: "{{ apic }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+        path: /api/node/class/faultInst.json
+        method: get
+      register: reponse
+    
+    - name: PRINT Template
+      debug:
+        msg: "{{ lookup('template', 'system_faults.j2') }}"
+
+    - name: PRINT Response
+      debug:
+        var: reponse
