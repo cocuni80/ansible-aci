@@ -14,7 +14,7 @@
         validate_certs: False
         path: /api/mo/topology/health.json
         method: get
-      register: reponse
+      register: response
     
     - name: PRINT Template
       debug:
@@ -22,4 +22,4 @@
 
     - name: PRINT System Health response
       debug:
-        var: reponse
+        var: response

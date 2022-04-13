@@ -14,7 +14,7 @@
         validate_certs: False
         path: /api/node/class/faultInst.json
         method: get
-      register: reponse
+      register: response
     
     - name: PRINT Template
       debug:

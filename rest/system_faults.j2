@@ -1,6 +1,6 @@
-{% if reponse %}
+{% if response %}
 Reporte
-{% for item in reponse.imdata %}
+{% for item in response.imdata %}
 Code: {{ item.faultInst.attributes.code }}
 Descr: {{ item.faultInst.attributes.descr }}
 Created: {{ item.faultInst.attributes.created }}
