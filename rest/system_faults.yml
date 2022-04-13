@@ -19,7 +19,3 @@
     - name: PRINT Template
       debug:
         msg: "{{ lookup('template', 'system_faults.j2') }}"
-
-    - name: PRINT Response
-      debug:
-        var: reponse
